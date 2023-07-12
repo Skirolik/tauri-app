@@ -25,7 +25,7 @@ const Login = () => {
       <Grid p="80px">
         <Grid.Col md={6} lg={3}></Grid.Col>
         <Grid.Col md={6} lg={5}>
-          <Card hadow="sm" padding="lg" radius="md" withBorder>
+          <Card shadow="sm" padding="lg" radius="md" withBorder>
             <Paper
               padding="lg"
               style={{

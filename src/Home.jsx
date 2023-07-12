@@ -1,28 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table, Pagination, Text, useMantineTheme } from "@mantine/core";
-import Chart from "./components/Chart";
-import Lmap from "./components/Lmap";
+import { useMantineTheme } from "@mantine/core";
+
+import Calender from "./components/Calender";
+import Data_table from "./components/Data_table";
+import Progress_card from "./components/Progress_card";
 
 function Home() {
   const theme = useMantineTheme();
   const [chartData, setChartData] = useState([]);
 
   const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const rowsPerPage = 5;
 
   useEffect(() => {
     const socket = new WebSocket("ws://127.0.0.1:5000");
 
     socket.onopen = () => {
-      console.log("WebSocket connection established.");
+      // console.log("WebSocket connection established.");
     };
 
     socket.onmessage = (event) => {
       const newData = JSON.parse(event.data);
       setData(newData);
-      console.log("Received data:", newData);
+      // console.log("Received data:", newData);
       const lastTenData = newData.slice(-10);
       setChartData(lastTenData);
     };
@@ -30,7 +30,7 @@ function Home() {
     console.log("chartdata:", chartData);
 
     socket.onclose = () => {
-      console.log("WebSocket connection closed.");
+      // console.log("WebSocket connection closed.");
     };
 
     return () => {
@@ -38,7 +38,7 @@ function Home() {
     };
   }, []);
 
-  console.log("Data:", data);
+  // console.log("Data:", data);
 
   const transformedData = chartData
     .map((row) => ({
@@ -47,99 +47,21 @@ function Home() {
     }))
     .reverse();
 
-  //Table Code
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
-
-  const getTotalPages = () => {
-    return Math.ceil(data.length / rowsPerPage);
-  };
-
-  const getPaginatedData = () => {
-    const startIndex = (currentPage - 1) * rowsPerPage;
-    const endIndex = startIndex + rowsPerPage;
-    const sortedData = data.slice().sort((a, b) => b[0] - a[0]); // Sort data in descending order based on row[0]
-
-    return sortedData.slice(startIndex, endIndex);
-  };
-
-  const totalPages = getTotalPages();
-
-  const activePageStyle = {
-    backgroundImage:
-      theme.colorScheme === "dark"
-        ? "linear-gradient(45deg, #FFC0CB, violet)"
-        : theme.colors.blue[6],
-    border: 0,
-  };
+  const transformerData = data.map((row) => ({
+    x: row[3],
+    y: Number(row[7]),
+  }));
 
   return (
-    <div>
-      <h1>Lightning Prediction : Data</h1>
-      <Table
-        striped
-        highlightOnHover
-        withBorder
-        withColumnBorders
-        verticalSpacing="xs"
-        data={getPaginatedData()}
-      >
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>mac_id</th>
+    <>
+      <Progress_card data={transformerData} />
+      {/* <Data_table data={data} /> */}
+      <Calender data={transformerData} />
 
-            <th>Date and Time</th>
-            <th>Static Measurement</th>
-            <th>Radio Frequency</th>
-            <th>Lightning Prediction</th>
-            <th>Weather Status</th>
-            <th>Alert</th>
+      {/* <Pie_chart data={transformerData} /> */}
+    </>
 
-            {/* Add more column headers as needed */}
-          </tr>
-        </thead>
-        <tbody>
-          {getPaginatedData().map((row) => (
-            <tr key={row[0]}>
-              <td>{row[0]}</td>
-              <td>{row[1]}</td>
-              <td>{row[3]}</td>
-              <td>{row[4]}</td>
-              <td>{row[5]}</td>
-              <td>{row[6]}</td>
-              <td>{row[8]}</td>
-              <td>{row[7]}</td>
-              {/* Render additional row data as needed */}
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-
-      {totalPages > 1 && (
-        <Pagination
-          total={totalPages}
-          value={currentPage}
-          onChange={handlePageChange}
-          size="sm"
-          siblings={2}
-          limit={1}
-          boundaries={1}
-          position="right"
-          style={{ marginTop: "20px" }}
-          styles={(currentTheme) => ({
-            control: {
-              "&[data-active]": activePageStyle,
-            },
-          })}
-        />
-      )}
-      {data.length === 0 && <Text>No data available.</Text>}
-
-      <Chart data={transformedData} />
-      {/* <Lmap /> */}
-    </div>
+    // </div>
   );
 }
 

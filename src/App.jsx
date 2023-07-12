@@ -22,6 +22,7 @@ import Login from "./Login";
 import RegistrationPage from "./components/Regestration";
 import Forgot_password from "./components/Forgot_password";
 import confirmation from "./components/confirmation";
+import Calender from "./components/Calender";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -80,7 +81,8 @@ function App() {
     NavLink: {
       display: "block",
       width: "100%",
-      padding: theme.spacing.xs,
+      padding: theme.spacing.md,
+      marginTop: "5px",
       borderRadius: theme.radius.md,
       color: colorScheme === "dark" ? theme.colors.dark[0] : theme.black,
       textDecoration: "none",
@@ -110,17 +112,26 @@ function App() {
           padding="md"
           navbarOffsetBreakpoint="sm fixed"
           navbar={
-            loggedIn && (
-              <Navbar width={{ sm: 200 }} padding="xs">
-                {views.map((view, index) => (
-                  <NavLink align="left" to={view.path} key={index}>
-                    <Group>
-                      <Text>{view.name}</Text>
-                    </Group>
-                  </NavLink>
-                ))}
-              </Navbar>
-            )
+            <Navbar
+              width={{ sm: 200 }}
+              padding="xs"
+              hidden={!opened}
+              hiddenBreakpoint="sm"
+            >
+              {views.map((view, index) => (
+                <NavLink
+                  align="left"
+                  to={view.path}
+                  key={index}
+                  onClick={() => setOpened(false)}
+                  className={`${classes.NavLink} ${classes.NavLinkActive}`}
+                >
+                  <Group>
+                    <Text>{view.name}</Text>
+                  </Group>
+                </NavLink>
+              ))}
+            </Navbar>
           }
           header={
             <Header height={70} padding="md">
@@ -176,23 +187,20 @@ function App() {
           })}
         >
           <Routes>
-            <Route path="/registration" element={<RegistrationPage />} />
+            {/* <Route path="/registration" element={<RegistrationPage />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/passwordreset" element={<Forgot_password />} />
-
-            {!loggedIn && (
+            <Route path="/passwordreset" element={<Forgot_password />} /> */}
+            {/* {!loggedIn && (
               <Route exact path="/" element={<Login onLogin={handleLogin} />} />
-            )}
-
-            {loggedIn &&
-              views.map((view, index) => (
-                <Route
-                  key={index}
-                  exact={view.exact}
-                  path={view.path}
-                  element={<view.component />}
-                />
-              ))}
+            )} */}
+            {views.map((view, index) => (
+              <Route
+                key={index}
+                exact={view.exact}
+                path={view.path}
+                element={<view.component />}
+              />
+            ))}
           </Routes>
           {/* {!loggedIn && <Login onLogin={handleLogin} />}
           {loggedIn && <Button onClick={handleLogout}>Logout</Button>} */}
