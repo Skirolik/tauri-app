@@ -21,25 +21,26 @@ const Progress_card = ({ data }) => {
     filter: "blur(8px)",
     borderRadius: "10px",
   };
+
   return (
     <div>
       <Grid p="50px" ml="20px">
-        <Grid.Col md={5} lg={4}>
+        <Grid.Col md={2} lg={4}>
           <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <p>Rferm-Earth Fault </p>
+            <h1>SMART Protection </h1>
             <div style={blockedStyle}>
               <Center>
                 <Battery_status data={data} />
               </Center>
             </div>
             <Center>
-              <Button>Purchase</Button>
+              <Button>Register</Button>
             </Center>
           </Card>
         </Grid.Col>
         <Grid.Col md={5} lg={4}>
           <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <p>Total Predictions</p>
+            <h1>Total Predictions</h1>
             <Center>
               <Battery_status data={data} />
             </Center>
@@ -47,7 +48,7 @@ const Progress_card = ({ data }) => {
         </Grid.Col>
         <Grid.Col md={5} lg={4}>
           <Card shadow="sm" padding="lg" radius="md" withBorder>
-            <p>Battery status</p>
+            <h1>Battery status</h1>
             <Center>
               <Battery_status data={data} />
             </Center>

@@ -1,23 +1,30 @@
 import { useState, useEffect } from "react";
-import { Map, Marker } from "react-map-gl";
+import { Map, Marker, GeolocateControl, NavigationControl } from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+import { Card } from "@mantine/core";
 
 const MAPBOX_TOKEN =
   "pk.eyJ1Ijoic2tpcm8iLCJhIjoiY2w1aTZjN2x2MDI3ODNkcHp0cnhuZzVicSJ9.HMjwHtHf_ttkh_aImSX-oQ";
 
 const Lmap = () => {
   return (
-    <Map
-      initialViewState={{
-        latitude: 12.9237,
-        longitude: 77.5938,
-        zoom: 5,
-      }}
-      style={{ width: "80%", height: 650 }}
-      mapStyle="mapbox://styles/mapbox/streets-v9"
-      mapboxAccessToken={MAPBOX_TOKEN}
-    >
-      {/* <Marker latitude={12.9237} longitude={77.5938}></Marker> */}
-    </Map>
+    <div>
+      <Map
+        initialViewState={{
+          latitude: 23.1957247,
+          longitude: 77.7908816,
+          zoom: 3.5,
+        }}
+        style={{ width: "100%", height: 400 }}
+        mapStyle="mapbox://styles/mapbox/streets-v9"
+        mapboxAccessToken={MAPBOX_TOKEN}
+      >
+        <Marker longitude={77.5946} latitude={12.9716} color="green" />
+
+        <GeolocateControl position="top-left" />
+        <NavigationControl position="top-left" />
+      </Map>
+    </div>
   );
 };
 

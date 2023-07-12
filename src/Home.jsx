@@ -5,6 +5,7 @@ import { useMantineTheme } from "@mantine/core";
 import Calender from "./components/Calender";
 import Data_table from "./components/Data_table";
 import Progress_card from "./components/Progress_card";
+import Lmap from "./components/Lmap";
 
 function Home() {
   const theme = useMantineTheme();
@@ -57,6 +58,7 @@ function Home() {
       <Progress_card data={transformerData} />
       {/* <Data_table data={data} /> */}
       <Calender data={transformerData} />
+      <Lmap />
 
       {/* <Pie_chart data={transformerData} /> */}
     </>

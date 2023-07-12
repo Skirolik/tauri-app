@@ -59,16 +59,16 @@ const Radial_bar = ({ data }) => {
             strokeLinecap: "initial",
             transform: "rotate(-126deg)",
             transformOrigin: "center center",
-            stroke: theme.colorScheme === "dark" ? "#FFC0CB" : "black",
+            stroke: theme.colorScheme === "dark" ? "#f4fce3" : "#a5d8ff",
           },
           path: {
             strokeLinecap: "butt",
             transform: "rotate(-126deg)",
             transformOrigin: "center center",
-            stroke: theme.colorScheme === "dark" ? "#cc5de8" : "#339af0",
+            stroke: theme.colorScheme === "dark" ? "#66a80f" : "#339af0",
           },
           text: {
-            fill: theme.colorScheme === "dark" ? "#cc5de8" : "#339af0",
+            fill: theme.colorScheme === "dark" ? "white" : "#339af0",
           },
         }}
         strokeWidth={10}
