@@ -47,13 +47,9 @@ const Data_table = ({ data }) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>mac_id</th>
+            <th>Name</th>
 
             <th>Date and Time</th>
-            <th>Static Measurement</th>
-            <th>Radio Frequency</th>
-            <th>Lightning Prediction</th>
-            <th>Weather Status</th>
             <th>Alert</th>
 
             {/* Add more column headers as needed */}
@@ -64,12 +60,9 @@ const Data_table = ({ data }) => {
             <tr key={row[0]}>
               <td>{row[0]}</td>
               <td>{row[1]}</td>
-              <td>{row[3]}</td>
               <td>{row[4]}</td>
-              <td>{row[5]}</td>
-              <td>{row[6]}</td>
               <td>{row[8]}</td>
-              <td>{row[7]}</td>
+
               {/* Render additional row data as needed */}
             </tr>
           ))}

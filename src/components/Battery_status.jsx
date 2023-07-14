@@ -52,7 +52,7 @@ const Radial_bar = ({ data }) => {
       <CircularProgressbar
         value={totalCount}
         text={totalCount}
-        maxValue={200}
+        maxValue={2000}
         circleRatio={1}
         styles={{
           trail: {

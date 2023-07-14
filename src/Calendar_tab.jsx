@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useMantineTheme } from "@mantine/core";
+import Calender from "./components/Calender";
 
-import Data_table from "./components/Data_table";
-import Progress_card from "./components/Progress_card";
-import Lmap from "./components/Lmap";
-
-function Home() {
+const Calendar_tab = () => {
   const theme = useMantineTheme();
   const [chartData, setChartData] = useState([]);
 
@@ -37,34 +34,12 @@ function Home() {
       socket.close();
     };
   }, []);
-
-  // console.log("Data:", data);
-
-  const transformedData = chartData
-    .map((row) => ({
-      x: row[3],
-      y: Number(row[7]),
-    }))
-    .reverse();
-
   const transformerData = data.map((row) => ({
     x: row[4],
     y: Number(row[13]),
   }));
 
-  return (
-    <>
-      <Data_table data={data} />
-      <Progress_card data={transformerData} />
+  return <Calender data={transformerData} />;
+};
 
-      {/* <Calender data={transformerData} /> */}
-      <Lmap />
-
-      {/* <Pie_chart data={transformerData} /> */}
-    </>
-
-    // </div>
-  );
-}
-
-export default Home;
+export default Calendar_tab;

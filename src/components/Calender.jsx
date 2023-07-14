@@ -40,11 +40,12 @@ const Calender = ({ data }) => {
   // console.log(calendarData);
 
   return (
-    <div className="calendar-wrapper" style={{ height: 400 }}>
+    <div className="calendar-wrapper" style={{ height: 600, width: "100%" }}>
+      <h1>Calander</h1>
       <ResponsiveCalendar
         data={calendarData}
         from="2023-07-01"
-        to="2023-07-31"
+        to="2025-12-31"
         emptyColor={
           theme.colorScheme === "dark"
             ? theme.colors.dark[2]

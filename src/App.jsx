@@ -23,6 +23,9 @@ import RegistrationPage from "./components/Regestration";
 import Forgot_password from "./components/Forgot_password";
 import confirmation from "./components/confirmation";
 import Calender from "./components/Calender";
+import Calendar_tab from "./Calendar_tab";
+import smart_earthpit from "./smart_earthpit";
+import smart_protection from "./smart_protection";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -40,27 +43,21 @@ function App() {
   const views = [
     { path: "/", name: "Home", component: Home },
     {
-      path: "/registration",
-      name: "Registration Page",
-      component: RegistrationPage,
+      path: "/calender_tab",
+      name: "Calendar",
+      component: Calendar_tab,
       exact: true,
     },
     {
-      path: "/login",
-      name: "Login Page",
-      component: Login,
+      path: "/smart_earthpit",
+      name: "Smart Earthing",
+      component: smart_earthpit,
       exact: true,
     },
     {
-      path: "/passwordreset",
-      name: "password Reset",
-      component: Forgot_password,
-      exact: true,
-    },
-    {
-      path: "/passwordreset",
-      name: "password Reset",
-      component: Forgot_password,
+      path: "/smart_protection",
+      name: "Smart Protection",
+      component: smart_protection,
       exact: true,
     },
   ];
